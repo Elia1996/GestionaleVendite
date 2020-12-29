@@ -3,16 +3,26 @@
 import sqlite3
 
 # create if don't exist
-conn = sqlite3.connect("acqua.db")
+conn = sqlite3.connect("database.db")
 
 print(conn.total_changes)
 
 cursor = conn.cursor()
-cursor.execute("CREATE TABLE ? (id TEXT ,n_operazione INTEGER, data TEXT, qualità TEXT qualità TEXT, collo TEXT, quantità INTEGER, prezzo_unitario FLOAT, prezzo_totale FLOAT)", ("Pippo"))
-cursor.execute("INSERT INTO acquisto VALUES ('Barbera', 'Bottiglie 0.75l', 12, 6.50, 78.00)")
-cursor.execute("SELECT qualità FROM acquisto")
+#cursor.execute("CREATE TABLE if not exists Pippo ( id TEXT , n_operazione INTEGER, data TEXT, prezzo_totale FLOAT)")
+#cursor.execute("INSERT INTO Pippo VALUES ('c0', 10, 'daafa', 78.00)")
+#cursor.execute("INSERT INTO Pippo VALUES ('c1', 1, 'dewqraafa', 79.00)")
+#cursor.execute("INSERT INTO Pippo VALUES ('c2', 101, 'dawewrafa', 74.00)")
+cursor.execute("INSERT INTO Pippo VALUES (?, ?, 'daafeea', 71.00)", ['dd',1])
+#cursor.execute("SELECT n_operazione FROM Pippo WHERE id = 'c1'")
+dz={'id':'cc', 'n_operazione':20, 'data':'arfgas','prezzo_totale':1.34}
+for key in dz.keys():
+    print(key, dz[key])
+
+cursor.execute("select * from Pippo")
 print(cursor.fetchall())
-cursor.execute(
-    "UPDATE ? SET qualità = ? WHERE "        
-)
+conn.commit()
+conn.close()
+#cursor.execute(
+#        "UPDATE tb_name SET litri = 54 WHERE id = c1"        
+#)
 
